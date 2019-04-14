@@ -2,11 +2,11 @@
 
 #### 蓝牙服务管理类，通过这些辅助的服务可以方便快捷的使用蓝牙发送数据和接收数据，这套框架仅适用于**经典蓝牙**，属于双向蓝牙，能够同时发送数据和接收数据。
 
+![](https://github.com/YuQianhao/BluetoothService/blob/master/a.jpg)
+
 #### 一、依赖
 
-```
-[![](https://jitpack.io/v/YuQianhao/BluetoothService.svg)](https://jitpack.io/#YuQianhao/BluetoothService)
-```
+![](https://jitpack.io/v/YuQianhao/BluetoothService.svg)
 
 #### 1、Gradle
 
