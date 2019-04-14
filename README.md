@@ -4,7 +4,7 @@
 
 ![](https://github.com/YuQianhao/BluetoothService/blob/master/a.jpg)
 
-#### 一、依赖
+### 一、依赖
 
 ![](https://jitpack.io/v/YuQianhao/BluetoothService.svg)
 
@@ -43,9 +43,9 @@ dependencies {
 </dependency>
 ```
 
-#### 二、使用方式
+### 二、使用方式
 
-##### 1、权限申请
+#### 1、权限申请
 
 想要使用蓝牙服务首先需要申请和蓝牙相关的权限，例如在AndroidManifest清单文件里声明需要使用的权限：
 
@@ -76,7 +76,7 @@ dependencies {
 
 权限并在运行时动态的申请权限，通过使用**ContextCompat.checkSelfPermission()**方法来检查权限，如果未获得权限就使用**ActivityCompat.requestPermissions**来申请权限，最终申请结果会在Activity的**onRequestPermissionsResult**方法中获取出来。
 
-##### 2、服务声明
+#### 2、服务声明
 
 ​	因为蓝牙辅助是通过服务的形式提供，所以需要在AndroidManifest清单文件中声明这个服务：
 
@@ -113,7 +113,7 @@ dependencies {
 
 要注意的是，声明服务的时候启动了一个子进程去创建和执行这个Service，因为**蓝牙发送数据和接收数据都各占一个子线程，而且还是常驻线程，如果不启动子进程去维护这两个线程name会消耗主进程的线程资源，所有在这里使用了子进程去创建维护这个服务**。
 
-##### 3、服务绑定
+#### 3、服务绑定
 
 ​	BluetoothService使用服务提供蓝牙相关的操作，所以如果想要在Activity中使用蓝牙，需要将Service和Activity绑定到一起，和普通的服务绑定没有区别，例如：
 
@@ -172,7 +172,7 @@ interface IBluetoothController {
 }
 ```
 
-##### 4、注册回调接口
+#### 4、注册回调接口
 
 ​	所有关于蓝牙状态改变的，例如扫描到蓝牙设备，配对成功，或者连接蓝牙成功都通过一个叫**IBluetoothStateChange**的回调接口回传给Activity，当服务绑定成功之后可以调用方法**registerBluetoothChangeListener**将这个回调接口绑定在BluetoothService中，例如：
 
@@ -245,7 +245,7 @@ BluetoothServiceConnected serviceConnection=new BluetoothServiceConnected() {
  };
 ```
 
-##### 5、蓝牙是否开启
+#### 5、蓝牙是否开启
 
 ​	在开始蓝牙业务之前需要判断一下蓝牙是否开启，可以通过**IBluetoothController**的**isEnabled**方法来判断蓝牙是否开启， 如果为true则开启，否则需要主动开启蓝牙，有两种方式：
 
@@ -262,7 +262,7 @@ Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE
 startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BT);
 ```
 
-##### 6、蓝牙扫描
+#### 6、蓝牙扫描
 
 ​	在连接蓝牙之前，需要进行扫描蓝牙，可以使用**IBluetoothController**的 **startScan**方法开启扫描，使用**cancelScan**来关闭扫描，当调用这个方法的时候，Service开始搜索蓝牙，如果搜索到蓝牙设备，就会通过回调接口**IBluetoothStateChange**回传结果，其中和扫描蓝牙相关的回调方法如下：
 
@@ -281,7 +281,7 @@ void onBondedDevice(in List<BluetoothDevice> bluetoothDevice);
 
 * 如果想要立即获取已经配对成功的蓝牙列表，可以通过**IBluetoothController**的**getBondedDevices**的方法的到一个**List< BluetoothDevice >**列表，这个列表代表了已经配对成功的蓝牙设备列表。
 
-##### 7、蓝牙配对
+#### 7、蓝牙配对
 
 ​	当扫描到蓝牙设备之后需要进行设备的配对，可以使用**IBluetoothController**的**pair**方法进行蓝牙配对，是否配对成功以及配对状态也是通过回调接口**IBluetoothStateChange**回传结果，其中和配对相关的回调如下：
 
@@ -313,7 +313,7 @@ void onPairSuccess(in BluetoothDevice bluetoothDevice){
 }
 ```
 
-##### 8、连接蓝牙，断开连接/监听蓝牙，断开监听
+#### 8、连接蓝牙，断开连接/监听蓝牙，断开监听
 
 ​	如果需要向目标蓝牙发送数据，就需要连接到目标蓝牙，这是在客户端的方式，如果是在服务端就需要监听蓝牙，监听蓝牙端口对方发送过来的数据。
 
@@ -397,7 +397,7 @@ void onListenClose();
 
 当连接成功方法**onConnectSuccess**被调用时，即可发送数据。
 
-##### 9、发送数据
+#### 9、发送数据
 
 当蓝牙连接成功时，可以向目标蓝牙发送数据，调用**IBluetoothController**的**sendData**发送数据，例如：
 
