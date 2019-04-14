@@ -417,7 +417,3 @@ void send(in byte[] data);
 # END
 
 
-
-​	
-
-​	当服务绑定成功并拿到IBluetoothController接口的实例之后，可以调用**startScan**方法开始扫描周围的蓝牙设备，
