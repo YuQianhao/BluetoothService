@@ -4,6 +4,45 @@
 
 #### 一、依赖
 
+```
+[![](https://jitpack.io/v/YuQianhao/BluetoothService.svg)](https://jitpack.io/#YuQianhao/BluetoothService)
+```
+
+#### 1、Gradle
+
+```xml
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+```xml
+dependencies {
+    implementation 'com.github.YuQianhao:BluetoothService:1.0.0'
+}
+```
+
+#### 2、Maven
+
+```xml
+<repositories>
+    <repository>
+    <id>jitpack.io</id>
+	<url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```xml
+<dependency>
+	 <groupId>com.github.YuQianhao</groupId>
+	 <artifactId>BluetoothService</artifactId>
+	 <version>1.0.0</version>
+</dependency>
+```
+
 #### 二、使用方式
 
 ##### 1、权限申请
